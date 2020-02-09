@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
-import com.example.daggerexample.core.di.Di;
 import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.ui.play.PlayViewModel;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
@@ -21,7 +20,6 @@ import javax.inject.Inject;
 
 
 public class PlayFragment extends CoreFragment {
-
     @Inject AppSingleton appSingleton;
     @Inject ActivitySingleton activitySingleton;
 
@@ -32,7 +30,6 @@ public class PlayFragment extends CoreFragment {
     }
 
     @Override public void onAttach(@NonNull Context context) {
-        Di.inject(this);
         super.onAttach(context);
 
         appSingleton.doSomething();
@@ -52,5 +49,4 @@ public class PlayFragment extends CoreFragment {
         mViewModel = ViewModelProviders.of(this).get(PlayViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }

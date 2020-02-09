@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
-import com.example.daggerexample.core.di.Di;
 import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.core.util.Pre;
 import com.example.daggerexample.ui.main.MainViewModel;
@@ -26,7 +25,6 @@ import static com.example.daggerexample.core.util.Views.findView;
 
 
 public class MainFragment extends CoreFragment {
-
     @Inject AppSingleton appSingleton;
     @Inject ActivitySingleton activitySingleton;
 
@@ -37,7 +35,6 @@ public class MainFragment extends CoreFragment {
     }
 
     @Override public void onAttach(@NonNull Context context) {
-        Di.inject(this);
         super.onAttach(context);
 
         appSingleton.doSomething();
