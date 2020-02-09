@@ -5,7 +5,7 @@
     android:id="@+id/play"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.play.PlayFragment">
+    tools:context=".ui.play.fragment.play.PlayFragment">
 
     <TextView
         android:id="@+id/message"

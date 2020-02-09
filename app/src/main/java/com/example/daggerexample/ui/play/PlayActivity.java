@@ -6,14 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
+import com.example.daggerexample.ui.play.fragment.play.PlayFragment;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
 
-public class PlayActivity extends AppCompatActivity {
+public class PlayActivity extends AppCompatActivity implements HasAndroidInjector {
 
+    @Inject DispatchingAndroidInjector<Object> injector;
     @Inject AppSingleton appSingleton;
     @Inject ActivitySingleton activitySingleton;
 
@@ -30,5 +35,9 @@ public class PlayActivity extends AppCompatActivity {
 
         appSingleton.doSomething();
         activitySingleton.doSomething();
+    }
+
+    @Override public AndroidInjector<Object> androidInjector() {
+        return injector;
     }
 }

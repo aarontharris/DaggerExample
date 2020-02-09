@@ -1,5 +1,6 @@
-package com.example.daggerexample.ui.main;
+package com.example.daggerexample.ui.common.fragment.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,22 +9,39 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.daggerexample.R;
+import com.example.daggerexample.app.AppSingleton;
+import com.example.daggerexample.core.di.Di;
+import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.core.util.Pre;
+import com.example.daggerexample.ui.main.MainViewModel;
 import com.example.daggerexample.ui.play.PlayActivity;
+import com.example.daggerexample.ui.singleton.ActivitySingleton;
+
+import javax.inject.Inject;
 
 import static com.example.daggerexample.core.util.Views.findView;
 
 
-public class MainFragment extends Fragment {
+public class MainFragment extends CoreFragment {
+
+    @Inject AppSingleton appSingleton;
+    @Inject ActivitySingleton activitySingleton;
 
     private MainViewModel mViewModel;
 
     public static MainFragment newInstance() {
         return new MainFragment();
+    }
+
+    @Override public void onAttach(@NonNull Context context) {
+        Di.inject(this);
+        super.onAttach(context);
+
+        appSingleton.doSomething();
+        activitySingleton.doSomething();
     }
 
     @Nullable
