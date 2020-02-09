@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
+import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
 import javax.inject.Inject;
 
@@ -14,6 +15,7 @@ import dagger.android.AndroidInjection;
 public class MainActivity extends AppCompatActivity {
 
     @Inject AppSingleton appSingleton;
+    @Inject ActivitySingleton activitySingleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         appSingleton.doSomething();
+        activitySingleton.doSomething();
     }
 }
