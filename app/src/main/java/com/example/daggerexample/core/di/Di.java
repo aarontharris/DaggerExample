@@ -1,6 +1,7 @@
 package com.example.daggerexample.core.di;
 
 import android.app.Activity;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,10 @@ public final class Di {
         Pre.notNull(Pre.notNull(Di.findHasAndroidInjectorForFragment(fragment)).androidInjector()).inject(fragment);
     }
 
+    public static void inject(@NonNull View view) {
+        findHasAndroidInjectorForView(view);
+    }
+
     private static HasAndroidInjector findHasAndroidInjectorForFragment(@NonNull Fragment fragment) {
         Fragment parentFragment = fragment;
         while ((parentFragment = parentFragment.getParentFragment()) != null) {
@@ -38,5 +43,9 @@ public final class Di {
         }
         throw new IllegalArgumentException(
                 String.format("No injector was found for %s", fragment.getClass().getCanonicalName()));
+    }
+
+    private static HasAndroidInjector findHasAndroidInjectorForView(@NonNull View view) {
+        return null;
     }
 }

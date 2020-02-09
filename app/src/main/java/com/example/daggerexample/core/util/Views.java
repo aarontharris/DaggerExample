@@ -1,8 +1,11 @@
 package com.example.daggerexample.core.util;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 public class Views {
@@ -18,6 +21,10 @@ public class Views {
         Pre.notNull(parent);
         //noinspection unchecked
         return (T) Pre.notNull(parent.findViewById(id));
+    }
+
+    public static void merge(ViewGroup parent, @LayoutRes int id) {
+        LayoutInflater.from(parent.getContext()).inflate(id, parent, true);
     }
 
 }
