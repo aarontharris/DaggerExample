@@ -1,4 +1,4 @@
-package com.example.daggerexample.ui.common.fragment.main;
+package com.example.daggerexample.ui.main.fragment.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
 import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.core.util.Pre;
+import com.example.daggerexample.ui.common.fragment.exampleshared.SharedFragment;
 import com.example.daggerexample.ui.main.MainViewModel;
 import com.example.daggerexample.ui.play.PlayActivity;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
@@ -44,6 +45,12 @@ public class MainFragment extends CoreFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        getChildFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_bottom_container, SharedFragment.newInstance())
+                .commitNow();
+
         return inflater.inflate(R.layout.main_fragment, container, false);
     }
 

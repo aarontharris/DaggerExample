@@ -1,4 +1,4 @@
-package com.example.daggerexample.ui.common.fragment.main;
+package com.example.daggerexample.ui.main.fragment.main;
 
 import dagger.Binds;
 import dagger.Module;

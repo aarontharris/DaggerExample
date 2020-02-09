@@ -1,7 +1,7 @@
 package com.example.daggerexample.ui.main;
 
 import com.example.daggerexample.core.di.ActivityScope;
-import com.example.daggerexample.ui.common.fragment.main.MainFragmentModule;
+import com.example.daggerexample.ui.main.fragment.main.MainFragmentModule;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;

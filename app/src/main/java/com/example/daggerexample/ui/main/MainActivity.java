@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
 import com.example.daggerexample.core.os.CoreActivity;
-import com.example.daggerexample.ui.common.fragment.main.MainFragment;
+import com.example.daggerexample.ui.main.fragment.main.MainFragment;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
 import javax.inject.Inject;

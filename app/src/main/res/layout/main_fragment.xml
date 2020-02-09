@@ -5,16 +5,47 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.common.fragment.main.MainFragment">
+    tools:context=".ui.common.fragment.exampleshared.SharedFragment">
 
     <TextView
         android:id="@+id/main_fragment_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MainFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_fragment_bottom_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/main_fragment_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_fragment_message"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--
+
+        app:layout_constraintBottom_toTopOf="@id/main_fragment_bottom_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+    <FrameLayout
+        android:id="@+id/main_fragment_bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_fragment_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        />
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
