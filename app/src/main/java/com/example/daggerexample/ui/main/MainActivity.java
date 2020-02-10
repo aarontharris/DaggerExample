@@ -31,7 +31,11 @@ public class MainActivity extends CoreActivity {
 
     /*
 
-    // TODO:
+    // TODO: I did this, it worked see PlayFragment
+    // NOTE:
+    //  - For anything under an activity scope you wont need @ActivityScope
+    //  - Instead of YourActivity, its YourFragment or YourView or YourWhatever
+
 
     Pro-tip: If your subcomponent and its factory have no other methods or supertypes other than the ones mentioned in step #2,
     you can use @ContributesAndroidInjector to generate them for you. Instead of steps 2 and 3, add an abstract module method

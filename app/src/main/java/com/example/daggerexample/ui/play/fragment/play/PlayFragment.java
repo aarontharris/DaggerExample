@@ -18,33 +18,16 @@ import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
 import javax.inject.Inject;
 
-import dagger.Binds;
 import dagger.Module;
-import dagger.Subcomponent;
-import dagger.android.AndroidInjector;
-import dagger.multibindings.ClassKey;
-import dagger.multibindings.IntoMap;
+import dagger.android.ContributesAndroidInjector;
 
 
 public class PlayFragment extends CoreFragment {
 
-    @Module(subcomponents = PlayFragmentComponent.class)
+    @Module
     public abstract class PlayFragmentModule {
-
-        @Binds
-        @IntoMap
-        @ClassKey(PlayFragment.class)
-        abstract AndroidInjector.Factory<?> bindMainFragmentInjectorFactory(PlayFragmentComponent.Factory factory);
-
-    }
-
-    @Subcomponent
-    public interface PlayFragmentComponent extends AndroidInjector<PlayFragment> {
-
-        @Subcomponent.Factory
-        public interface Factory extends AndroidInjector.Factory<PlayFragment> {
-        }
-
+        @ContributesAndroidInjector
+        abstract PlayFragment injector();
     }
 
     @Inject AppSingleton appSingleton;
