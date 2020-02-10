@@ -16,16 +16,44 @@ import com.example.daggerexample.app.AppSingleton;
 import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.core.util.Pre;
 import com.example.daggerexample.ui.common.fragment.exampleshared.SharedFragment;
+import com.example.daggerexample.ui.common.fragment.exampleshared.SharedFragment.SharedFragmentModule;
 import com.example.daggerexample.ui.main.MainViewModel;
 import com.example.daggerexample.ui.play.PlayActivity;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
 import javax.inject.Inject;
 
+import dagger.Binds;
+import dagger.Module;
+import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
+import dagger.multibindings.ClassKey;
+import dagger.multibindings.IntoMap;
+
 import static com.example.daggerexample.core.util.Views.findView;
 
 
 public class MainFragment extends CoreFragment {
+
+    @Module(subcomponents = MainFragmentComponent.class)
+    public abstract class MainFragmentModule {
+
+        @Binds
+        @IntoMap
+        @ClassKey(MainFragment.class)
+        abstract AndroidInjector.Factory<?> bindMainFragmentInjectorFactory(MainFragmentComponent.Factory factory);
+
+    }
+
+    @Subcomponent(modules = SharedFragmentModule.class)
+    public interface MainFragmentComponent extends AndroidInjector<MainFragment> {
+
+        @Subcomponent.Factory
+        public interface Factory extends AndroidInjector.Factory<MainFragment> {
+        }
+
+    }
+
     @Inject AppSingleton appSingleton;
     @Inject ActivitySingleton activitySingleton;
 

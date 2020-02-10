@@ -24,10 +24,7 @@ public class SharedCustomView extends LinearLayoutCompat {
 
     @Module(subcomponents = SharedCustomViewComponent.class)
     public abstract class SharedCustomViewModule {
-        @Binds
-        @IntoMap
-        @ClassKey(SharedCustomView.class)
-        abstract AndroidInjector.Factory<?> bindInjectorFactory(SharedCustomViewComponent.Factory factory);
+        @Binds @IntoMap @ClassKey(SharedCustomView.class) abstract AndroidInjector.Factory<?> bindInjectorFactory(SharedCustomViewComponent.Factory factory);
     }
 
     @Subcomponent
@@ -36,7 +33,6 @@ public class SharedCustomView extends LinearLayoutCompat {
         public interface Factory extends AndroidInjector.Factory<SharedCustomView> {
         }
     }
-
 
     @Inject AppSingleton appSingleton;
     @Inject ActivitySingleton activitySingleton;
