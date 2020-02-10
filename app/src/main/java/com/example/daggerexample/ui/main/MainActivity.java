@@ -20,7 +20,7 @@ public class MainActivity extends CoreActivity {
         setContentView(R.layout.main_activity);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
+                    .replace(R.id.main_activity, MainFragment.newInstance())
                     .commitNow();
         }
 

@@ -2,10 +2,12 @@ package com.example.daggerexample.core.di;
 
 import android.app.Activity;
 import android.view.View;
+import android.view.ViewParent;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.daggerexample.core.util.Log;
 import com.example.daggerexample.core.util.Pre;
 
 import dagger.Lazy;
@@ -24,7 +26,7 @@ public final class Di {
     }
 
     public static void inject(@NonNull View view) {
-        findHasAndroidInjectorForView(view);
+        Pre.notNull(Pre.notNull(Di.findHasAndroidInjectorForView(view)).androidInjector()).inject(view);
     }
 
     private static HasAndroidInjector findHasAndroidInjectorForFragment(@NonNull Fragment fragment) {
@@ -45,7 +47,23 @@ public final class Di {
                 String.format("No injector was found for %s", fragment.getClass().getCanonicalName()));
     }
 
-    private static HasAndroidInjector findHasAndroidInjectorForView(@NonNull View view) {
-        return null;
+    private static @NonNull HasAndroidInjector findHasAndroidInjectorForView(@NonNull View view) {
+        ViewParent viewParent = view.getParent();
+        while (viewParent != null) {
+            Log.d("ViewParent: " + viewParent);
+            if (viewParent instanceof HasAndroidInjector) {
+                Log.d("Got Injector 1 @ " + viewParent);
+                return (HasAndroidInjector) viewParent;
+            }
+
+            HasAndroidInjector injector = FragmentViewMaps.get(view.getContext()).lookup((View) viewParent);
+            if (injector != null) {
+                Log.d("Got Injector 2 @ " + viewParent);
+                viewParent = viewParent.getParent();
+                return injector;
+            }
+        }
+        throw new IllegalArgumentException(
+                String.format("No injector was found for %s", view.getClass().getCanonicalName()));
     }
 }

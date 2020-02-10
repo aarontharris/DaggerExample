@@ -19,8 +19,9 @@ public class PlayActivity extends CoreActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_activity);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, PlayFragment.newInstance())
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.play_activity, PlayFragment.newInstance())
                     .commitNow();
         }
 

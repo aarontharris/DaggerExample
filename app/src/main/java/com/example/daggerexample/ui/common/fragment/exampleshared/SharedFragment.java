@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.daggerexample.R;
 import com.example.daggerexample.app.AppSingleton;
+import com.example.daggerexample.core.di.FragmentViewMaps;
 import com.example.daggerexample.core.os.CoreFragment;
 import com.example.daggerexample.ui.singleton.ActivitySingleton;
 
@@ -42,7 +43,9 @@ public class SharedFragment extends CoreFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.shared_fragment, container, false);
+        View view = inflater.inflate(R.layout.shared_fragment, container, false);
+        FragmentViewMaps.get(view.getContext()).associate(view, this);
+        return view;
     }
 
     @Override
